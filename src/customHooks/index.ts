@@ -16,10 +16,17 @@ const fetchMessage = async (infoMessage: string) => {
     message.error(error);
   }
 };
-export const useAIChatMessage = (info: string) => {
+
+interface AIChatParams {
+  inputMsg: string;
+}
+
+export const useAIChatMessage = (params: AIChatParams) => {
+  const { inputMsg } = params;
+  const [info, setInfo] = useState<string>();
   useEffect(() => {
-    if (info) {
-      fetchMessage(info);
+    if (inputMsg) {
+      fetchMessage(inputMsg);
     }
-  }, [info]);
+  }, [inputMsg]);
 };
